@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuidados, Embalagem e Envio — Villare Atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F3EE;
+    --warm-white: #FBF9F6;
+    --bark: #8B6F5C;
+    --bark-light: #B8967E;
+    --bark-dark: #5C4337;
+    --gold: #C4A882;
+    --gold-light: #DEC9A8;
+    --charcoal: #2C2420;
+    --text-body: #4A3C35;
+    --text-muted: #9B8578;
+    --alert-red: #7A3B2E;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* HERO */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 52px 32px 44px;
+    position: relative;
+    background: var(--warm-white);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(196,168,130,0.15) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 80% 100%, rgba(138,158,138,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-ornament {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--gold));
+    margin-bottom: 32px;
+    animation: fadeDown 1.2s ease forwards;
+  }
+
+  .hero-logo-img {
+    width: 200px;
+    max-width: 65vw;
+    margin-bottom: 24px;
+    animation: fadeUp 1s ease 0.3s both;
+  }
+
+  .hero-bouquet {
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    object-position: center 60%;
+    display: block;
+    margin-top: 36px;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 0 0 22px;
+    animation: fadeUp 1s ease 0.5s both;
+  }
+
+  .hero-divider::before,
+  .hero-divider::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: var(--gold-light);
+  }
+
+  .hero-divider-diamond {
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+    transform: rotate(45deg);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(20px, 6vw, 27px);
+    color: var(--bark-dark);
+    line-height: 1.45;
+    letter-spacing: 0.04em;
+    animation: fadeUp 1s ease 0.7s both;
+    position: relative;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--bark);
+  }
+
+  /* INTRO ESCURO */
+  .intro {
+    padding: 56px 32px;
+    background: var(--bark-dark);
+    position: relative;
+  }
+
+  .intro::after {
+    content: '"';
+    position: absolute;
+    top: 40px;
+    right: 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 160px;
+    color: rgba(196,168,130,0.07);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .section-label {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.65;
+    margin-bottom: 18px;
+    display: block;
+  }
+
+  .intro-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(17px, 4.5vw, 22px);
+    line-height: 1.8;
+    color: rgba(247,243,238,0.88);
+    font-weight: 400;
+  }
+
+  .intro-text em { color: var(--gold-light); font-style: italic; }
+
+  /* SECTION HEADERS */
+  .section-header {
+    padding: 48px 32px 28px;
+    background: var(--warm-white);
+    border-top: 1px solid rgba(196,168,130,0.2);
+  }
+
+  .section-header .section-label { color: var(--bark-light); opacity: 1; }
+
+  .section-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(24px, 7vw, 32px);
+    color: var(--bark-dark);
+    line-height: 1.3;
+  }
+
+  .section-header p {
+    margin-top: 9px;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+
+  /* CARDS */
+  .cards-wrap {
+    background: var(--warm-white);
+    padding: 0 24px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .card {
+    background: white;
+    border-radius: 2px;
+    box-shadow: 0 2px 20px rgba(44,36,32,0.06);
+    padding: 20px 18px;
+    border-left: 3px solid var(--gold);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .card.visible { opacity: 1; transform: translateY(0); }
+
+  .card-label {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--bark-light);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .card p {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--text-body);
+  }
+
+  /* SPECIES — ESCURO */
+  .species-section {
+    padding: 56px 32px;
+    background: var(--bark-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .species-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 20% 50%, rgba(196,168,130,0.07) 0%, transparent 60%);
+  }
+
+  .species-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(22px, 7vw, 30px);
+    color: var(--cream);
+    line-height: 1.4;
+    margin-bottom: 32px;
+  }
+
+  .spc-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 32px;
+  }
+
+  .spc-item:last-child { margin-bottom: 0; }
+
+  .spc-header {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 14px;
+  }
+
+  .spc-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 26px;
+  }
+
+  .spc-content h3 {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 13.5px;
+    letter-spacing: 0.05em;
+    color: var(--cream);
+    margin-bottom: 6px;
+    margin-top: 4px;
+  }
+
+  .spc-content p {
+    font-size: 12.5px;
+    color: rgba(251,249,246,0.62);
+    line-height: 1.7;
+  }
+
+  .spc-img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 2px;
+    opacity: 0.88;
+  }
+
+  .spc-divider {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(196,168,130,0.3), transparent);
+    margin: 28px 0;
+  }
+
+  /* STEPS */
+  .steps-wrap {
+    background: var(--warm-white);
+    padding: 0 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .step-card {
+    background: white;
+    border-radius: 2px;
+    box-shadow: 0 2px 20px rgba(44,36,32,0.06);
+    padding: 20px 18px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  .step-card.visible { opacity: 1; transform: translateY(0); }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--gold);
+    min-width: 26px;
+    line-height: 1.1;
+  }
+
+  .step-title {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+    margin-bottom: 6px;
+  }
+
+  .step-card p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-body);
+  }
+
+  .step-note {
+    margin-top: 10px;
+    padding: 10px 13px;
+    background: var(--cream);
+    border-left: 2px solid var(--gold-light);
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .step-note strong { color: var(--alert-red); font-weight: 500; }
+
+  .step-img {
+    width: 100%;
+    border-radius: 2px;
+    margin-top: 12px;
+    max-height: 140px;
+    object-fit: cover;
+    object-position: center bottom;
+  }
+
+  /* ALERT */
+  .alert-wrap {
+    padding: 0 24px 32px;
+    background: var(--warm-white);
+  }
+
+  .alert-box {
+    background: #FDF5F3;
+    border-radius: 2px;
+    border-left: 3px solid var(--alert-red);
+    padding: 20px 18px;
+    box-shadow: 0 2px 16px rgba(44,36,32,0.05);
+  }
+
+  .alert-label {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--alert-red);
+    margin-bottom: 9px;
+    display: block;
+  }
+
+  .alert-box p { font-size: 13px; line-height: 1.7; color: #5C2A20; }
+
+  /* RULES — ESCURO */
+  .rules-section {
+    padding: 56px 32px;
+    background: var(--bark-dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rules-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 80% 100%, rgba(196,168,130,0.07) 0%, transparent 60%);
+  }
+
+  .rules-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(22px, 7vw, 29px);
+    color: var(--cream);
+    line-height: 1.4;
+    margin-bottom: 28px;
+  }
+
+  .rules-list { display: flex; flex-direction: column; gap: 14px; }
+  .rule-item { display: flex; align-items: flex-start; gap: 14px; }
+
+  .rule-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--gold);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .rule-item p { font-size: 13px; color: rgba(247,243,238,0.72); line-height: 1.65; }
+  .rule-item strong { color: rgba(247,243,238,0.95); font-weight: 400; }
+
+  /* ENVIO */
+  .envio-section {
+    padding: 48px 32px 0;
+    background: var(--warm-white);
+    border-top: 1px solid rgba(196,168,130,0.2);
+  }
+
+  .envio-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(24px, 7vw, 32px);
+    color: var(--bark-dark);
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+
+  .envio-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-bottom: 40px;
+  }
+
+  /* ETIQUETAS */
+  .etiquetas-section {
+    padding: 48px 32px;
+    background: var(--bark-dark);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .etiquetas-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(196,168,130,0.08) 0%, transparent 70%);
+  }
+
+  .etiquetas-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(22px, 6vw, 28px);
+    color: var(--cream);
+    line-height: 1.4;
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  .etiquetas-section > p {
+    font-size: 13px;
+    color: rgba(247,243,238,0.62);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--charcoal);
+    text-decoration: none;
+    padding: 16px 28px;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 500;
+    position: relative;
+    border-radius: 1px;
+    transition: background 0.3s ease;
+  }
+
+  .download-btn:active { background: var(--gold-light); }
+
+  .etiquetas-note {
+    margin-top: 14px;
+    font-size: 11px;
+    color: rgba(247,243,238,0.38);
+    letter-spacing: 0.04em;
+    position: relative;
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 56px 32px;
+    background: var(--cream);
+    text-align: center;
+    border-top: 1px solid rgba(196,168,130,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(196,168,130,0.1) 0%, transparent 70%);
+  }
+
+  .cta-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .cta-ornament::before, .cta-ornament::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: var(--gold-light);
+  }
+
+  .cta-ornament-center { width: 4px; height: 4px; background: var(--gold); transform: rotate(45deg); }
+
+  .cta-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(22px, 6vw, 28px);
+    color: var(--bark-dark);
+    line-height: 1.45;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .cta-section > p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bark-dark);
+    color: var(--cream);
+    text-decoration: none;
+    padding: 18px 32px;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-weight: 400;
+    position: relative;
+    transition: background 0.3s ease;
+  }
+
+  .cta-btn:active { background: var(--bark); }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal);
+    padding: 44px 32px;
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.2em;
+    color: var(--gold-light);
+    font-weight: 300;
+    margin-bottom: 6px;
+  }
+
+  .footer-sub {
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: rgba(196,168,130,0.45);
+    margin-bottom: 24px;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+
+  .footer-links a {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(251,249,246,0.35);
+    text-decoration: none;
+  }
+
+  .footer-copy { font-size: 10px; color: rgba(251,249,246,0.2); letter-spacing: 0.05em; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (min-width: 600px) {
+    body {
+      max-width: 430px;
+      margin: 0 auto;
+      box-shadow: 0 0 80px rgba(44,36,32,0.15);
+      min-height: 100vh;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ornament"></div>
+  <img class="hero-logo-img" src="logotipo.png" alt="Villare Atelier">
+  <div class="hero-divider"><div class="hero-divider-diamond"></div></div>
+  <p class="hero-title">Guia de Cuidados,<br><em>Embalagem e Envio</em></p>
+</section>
+
+<!-- INTRO -->
+<section class="intro">
+  <span class="section-label">Antes de começar</span>
+  <p class="intro-text">
+    A qualidade do resultado final começa muito antes da chegada ao atelier. Cada detalhe — da hidratação à embalagem — <em>define a beleza da sua eternização.</em>
+  </p>
+</section>
+
+<!-- CUIDADOS ANTES -->
+<div class="section-header">
+  <span class="section-label">Etapa 01</span>
+  <h2>Cuidados antes<br>do casamento</h2>
+  <p>Mantenha as flores saudáveis desde o momento em que chegam até você.</p>
+</div>
+
+<section class="cards-wrap">
+  <div class="card">
+    <span class="card-label">Hidratação</span>
+    <p>Mantenha o buquê constantemente em água fresca, de preferência filtrada, com uma colher de chá de açúcar. Ele só sairá da água quando você for usá-lo na cerimônia, e logo após deverá voltar para ela.</p>
+  </div>
+  <div class="card">
+    <span class="card-label">Quantidade de água</span>
+    <p>Coloque apenas 2 ou 3 dedos de água no vaso, o suficiente para as pontas dos caules ficarem hidratadas. Água em excesso pode encharcar e prejudicar as flores.</p>
+  </div>
+  <div class="card">
+    <span class="card-label">Manuseio</span>
+    <p>Evite tocar nas flores. O contato pode danificar as pétalas e elas ficarão transparentes em contato com a resina.</p>
+  </div>
+</section>
+
+<!-- CUIDADOS APÓS -->
+<div class="section-header">
+  <span class="section-label">Etapa 02</span>
+  <h2>Cuidados após<br>o casamento</h2>
+  <p>Continue com os mesmos cuidados ainda na festa e ao chegar em casa.</p>
+</div>
+
+<section class="cards-wrap">
+  <div class="card">
+    <span class="card-label">Ao chegar em casa</span>
+    <p>Corte cerca de 1 a 2 cm dos caules em ângulo de 45 graus. Isso aumenta a absorção de água e nutrientes. Não toque nas flores.</p>
+  </div>
+  <div class="card">
+    <span class="card-label">De volta à água</span>
+    <p>O buquê deverá voltar para a água com a mesma composição anterior. Se houver folhas ou fitas que ficariam submersas, retire-as. Molhe somente a pontinha dos caules.</p>
+  </div>
+</section>
+
+<!-- ATENÇÃO ESPECIAL — escuro -->
+<section class="species-section">
+  <span class="section-label">Atenção especial</span>
+  <h2>Se o seu buquê tem<br>flores específicas</h2>
+
+  <div class="spc-item">
+    <div class="spc-header">
+      <div class="spc-num">①</div>
+      <div class="spc-content">
+        <h3>Lírios</h3>
+        <p>Vire o buquê de cabeça para baixo e corte os pistilos com cuidado. Se ficarem, eles vão manchar sua flor, suas mãos e sua roupa.</p>
+      </div>
+    </div>
+    <img class="spc-img" src="lirio.png" alt="Lírio com pistilos destacados">
+  </div>
+
+  <div class="spc-divider"></div>
+
+  <div class="spc-item">
+    <div class="spc-header">
+      <div class="spc-num">②</div>
+      <div class="spc-content">
+        <h3>Callas ou Copos de Leite</h3>
+        <p>O cabo dessas flores absorve muita umidade. Coloque sempre apenas 2 dedos de água no vaso. Antes de embalar, corte cerca de 4 dedos da ponta do cabo para eliminar a parte mais úmida.</p>
+      </div>
+    </div>
+    <img class="spc-img" src="callas.png" alt="Callas e copos de leite">
+  </div>
+</section>
+
+<!-- PASSO A PASSO -->
+<div class="section-header">
+  <span class="section-label">Etapa 03</span>
+  <h2>Passo a passo<br>de embalagem</h2>
+  <p>Embale somente na hora de ir ao correio. Quanto menos tempo o buquê ficar dentro da caixa, melhor.</p>
+</div>
+
+<section class="steps-wrap">
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <div>
+      <div class="step-title">Escolha a caixa certa</div>
+      <p>Certifique-se de que o buquê cabe na caixa sem ficar apertado ou amassado. A caixa não pode ser muito grande nem muito pequena.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <div>
+      <div class="step-title">Proteja os caules</div>
+      <p>Retire o buquê da água e seque o excesso com papel toalha. Com outro papel toalha, embale somente a ponta do cabo. Coloque plástico filme em volta para segurar o papel no lugar.</p>
+      <div class="step-note"><strong>Não use papel alumínio.</strong> Não coloque papel nem plástico filme em todo o cabo, somente na pontinha.</div>
+      <img class="step-img" src="cabo.png" alt="Como proteger os caules do buquê">
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <div>
+      <div class="step-title">Base de bolas de papel</div>
+      <p>Coloque bolas de papel na caixa e encaixe o cabo do buquê em pé entre elas. Coloque mais bolas até apoiar toda a volta do cabo do buquê e ele ficar firme na caixa. As bolas de papel protegem e seguram o buquê sem abafar as flores.</p>
+      <div class="step-note"><strong>Somente papel.</strong> Faça as bolas com folha de sulfite, jornal ou papel kraft, são os únicos indicados. Não utilize nenhum tipo de plástico dentro ou fora da caixa. Não coloque papel aberto.</div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">4</div>
+    <div>
+      <div class="step-title">Proteja as flores</div>
+      <p>Coloque algumas bolas de papel, de leve e com muito cuidado, em volta da copa do buquê, somente para proteger as flores de impacto. Não coloque nada em cima das flores e não as aperte.</p>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">5</div>
+    <div>
+      <div class="step-title">Feche e identifique</div>
+      <p>Feche a caixa e cole etiquetas de "Frágil" com as setas posicionadas corretamente nos quatro lados. Faça a embalagem em casa e leve a caixa já fechada ao correio. Declare o conteúdo como item decorativo.</p>
+    </div>
+  </div>
+</section>
+
+<div class="alert-wrap">
+  <div class="alert-box">
+    <span class="alert-label">Importante</span>
+    <p>Infelizmente, recebemos muitos buquês que chegam danificados por embalagem inadequada. Isso não nos impede de seguir com a eternização, mas sua arte não terá flores com pétalas perfeitas e coloridas como você sempre sonhou. Para o melhor resultado, precisamos de flores de qualidade e uma embalagem cuidadosa. Cuide disso com carinho.</p>
+  </div>
+</div>
+
+<!-- REGRA DE OURO — escuro -->
+<section class="rules-section">
+  <span class="section-label">Regra de ouro</span>
+  <h2>Nunca use plástico<br>dentro da caixa</h2>
+
+  <div class="rules-list">
+    <div class="rule-item">
+      <div class="rule-dot"></div>
+      <p><strong>Somente papel</strong> — utilize papel sulfite, jornal ou kraft. São os únicos indicados.</p>
+    </div>
+    <div class="rule-item">
+      <div class="rule-dot"></div>
+      <p><strong>Bolas</strong>, não papel aberto</p>
+    </div>
+    <div class="rule-item">
+      <div class="rule-dot"></div>
+      <p>Não aperte as bolas — vai <strong>amassar as flores</strong></p>
+    </div>
+    <div class="rule-item">
+      <div class="rule-dot"></div>
+      <p><strong>Nada em cima das flores</strong></p>
+    </div>
+    <div class="rule-item">
+      <div class="rule-dot"></div>
+      <p><strong>Seu buquê é valioso demais para estragar no envio.</strong> Organize-se com antecedência.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ENVIO -->
+<section class="envio-section">
+  <span class="section-label">Etapa 04</span>
+  <h2>Envio</h2>
+
+  <div class="envio-cards">
+    <div class="card" style="opacity:1;transform:none;">
+      <span class="card-label">Quando enviar</span>
+      <p>No primeiro dia útil após seu casamento, pela manhã. Quanto mais rápido, melhor para a conservação das flores.</p>
+    </div>
+    <div class="card" style="opacity:1;transform:none;">
+      <span class="card-label">Modalidade</span>
+      <p>Envie por <strong>SEDEX</strong> e nos encaminhe o código de rastreio imediatamente após a postagem.</p>
+    </div>
+    <div class="card" style="opacity:1;transform:none;">
+      <span class="card-label">Organização</span>
+      <p>Separe a caixa e os materiais de embalagem antes do dia do casamento para evitar correria no dia seguinte.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ETIQUETAS -->
+<section class="etiquetas-section">
+  <span class="section-label" style="color:var(--gold-light);opacity:0.65;">Etiquetas</span>
+  <h2>Baixe as etiquetas<br>de envio</h2>
+  <p>Imprima as etiquetas de frágil e cole nos 4 lados da caixa. Cole a etiqueta de destinatário em cima e preencha seus dados como remetente.</p>
+  <a class="download-btn" href="Etiquetas_Villare_Atelier.pdf" download="Etiquetas_Villare_Atelier.pdf">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Baixar Etiquetas (PDF)
+  </a>
+  <p class="etiquetas-note">Arquivo PDF para impressão</p>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-ornament"><div class="cta-ornament-center"></div></div>
+  <h2>Dúvidas sobre<br>o processo?</h2>
+  <p>Estamos aqui para te orientar em cada etapa. Entre em contato antes de embalar.</p>
+  <a class="cta-btn" href="https://wa.me/55SEUNUMERO" target="_blank" rel="noopener">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    Falar com o Atelier
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Villare Atelier</div>
+  <div class="footer-sub">onde a memória é cultivada</div>
+  <div class="footer-links">
+    <a href="https://instagram.com/buqueeternizado" target="_blank" rel="noopener">@buqueeternizado</a>
+  </div>
+  <div class="footer-copy">© 2026 Villare Atelier — Natasha Castilho</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.card, .step-card').forEach(el => obs.observe(el));
+</script>
+</body>
+</html  <div class="spc-divider"></div>
+
+  <div class="spc-item">
+    <div class="spc-header">
+      <div class="spc-num">③</div>
+      <div class="spc-content">
+        <h3>Tulipas</h3>
+        <p>As tulipas também têm caules que absorvem muita umidade e continuam crescendo mesmo depois de cortadas. Mantenha-as em vaso com água na parte de baixo da geladeira até o momento de embalar — o frio desacelera o crescimento e ajuda a conservar. Na hora de embalar, corte cerca de 4 dedos da ponta do cabo para eliminar a parte mais úmida antes de colocar na caixa.</p>
+      </div>
+    </div>
+    <img class="spc-img" src="tulipas.png" alt="Tulipas">
+  </div>
+
+>
